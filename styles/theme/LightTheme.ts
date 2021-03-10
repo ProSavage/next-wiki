@@ -4,8 +4,8 @@ const LightTheme: ITheme = {
     background: "#FFFFFF",
     boxShadowColor: "rgba(234, 234, 234, 0.35)",
     color: "black",
-    accentColor: "#C679E3"
-
+    accentColor: "#C679E3",
+    borderColor: "#eaeaea"
 }
 
 export default LightTheme;

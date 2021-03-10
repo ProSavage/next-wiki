@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import LightTheme from "../styles/theme/LightTheme";
 import Navbar from "./../components/ui/Navbar";
@@ -9,38 +9,35 @@ import { RecoilRoot } from "recoil";
 import { useRecoilValue } from "recoil";
 import { themeState } from "../styles/atoms/theme";
 import Footer from "../components/ui/Footer";
+import {MDXProvider} from "@mdx-js/react"
+import components from "../components/mdx/components";
 
 function MyApp({ Component, pageProps }) {
-
-
-
   return (
     <Wrapper>
-     <RecoilRoot>
-        <WrappedApp Component={Component} pageProps={pageProps}/>
+      <RecoilRoot>
+        <WrappedApp Component={Component} pageProps={pageProps} />
       </RecoilRoot>
     </Wrapper>
   );
 }
 
-
 function WrappedApp({ Component, pageProps }) {
-
-  const theme = useRecoilValue(themeState)
-
+  const theme = useRecoilValue(themeState);
 
   return (
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <PageContainer>
-            <Navbar />
-            <Component {...pageProps} />
-            <Footer/>
-          </PageContainer>
-        </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <PageContainer>
+        <Navbar />
+        <MDXProvider components={components}>
+          <Component {...pageProps} />
+        </MDXProvider>
+        <Footer />
+      </PageContainer>
+    </ThemeProvider>
   );
 }
-
 
 const PageContainer = styled.div`
   height: 100%;
@@ -60,7 +57,6 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-`
-
+`;
 
 export default MyApp;
