@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import PropsTheme from "./theme/PropsTheme";
 
 const GlobalStyle = createGlobalStyle`
@@ -11,28 +11,24 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
             Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-    }
+    } 
 
     a {
         color: ${(props: PropsTheme) => props.theme.color};
-        text-decoration: none;
     }
 
-    p {
-        font-size: 20px;
-        line-height: 29px;
+    article li {
+        margin: 0.25em 0;
     }
 
-    h1 {
-        font-size: 70px;
+    article h2, article h3, article h4, article h5 {
+      margin-bottom: 0;
     }
 
+    article pre[class*="language-"] {
+        border-radius: 5px;
+    }
 
-`
+`;
 
 export default GlobalStyle;

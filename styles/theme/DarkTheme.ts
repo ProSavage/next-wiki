@@ -5,7 +5,8 @@ const DarkTheme: ITheme = {
     boxShadowColor: "black",
     color: "white",
     accentColor: "#C679E3",
-    borderColor: "#333"
+    borderColor: "#333",
+    secondaryBackground: "#2d3748",
 
 }
 

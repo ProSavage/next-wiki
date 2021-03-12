@@ -63,14 +63,14 @@ export default function Navbar(props) {
           <LinksWrapper>
             {links
               .map((entry) => (
-                <LinkWrapper>
+                <LinkWrapper key={entry.link}>
                   <ActiveLink href={entry.link}>
                     <LinkText>{entry.text}</LinkText>
                   </ActiveLink>
                 </LinkWrapper>
               ))
               .concat(
-                <LinkWrapper
+                <LinkWrapper key={"theme"}
                   onClick={() =>
                     setTheme(theme === DarkTheme ? LightTheme : DarkTheme)
                   }
@@ -118,6 +118,7 @@ const LogoSection = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding-left: 1em;
 
   @media (min-width: 700px) {
     justify-content: center;
@@ -159,7 +160,7 @@ const LinksWrapper = styled.div`
   }
 `;
 
-const LinkText = styled.a`
+const LinkText = styled.p`
   font-size: 1rem;
   cursor: pointer;
 
