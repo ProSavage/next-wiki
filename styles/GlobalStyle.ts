@@ -21,6 +21,14 @@ const GlobalStyle = createGlobalStyle`
         margin: 0.25em 0;
     }
 
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    h1,h2 {
+        letter-spacing: -.015em;
+    }
+
     article h2, article h3, article h4, article h5 {
       margin-bottom: 0;
     }
