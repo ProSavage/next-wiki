@@ -1,26 +1,13 @@
 import styled, { css } from "styled-components";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import DarkTheme from "../../styles/theme/DarkTheme";
 import LightTheme from "../../styles/theme/LightTheme";
 import PropsTheme from "../../styles/theme/PropsTheme";
 import ActiveLink from "./../ActiveLink";
-import { Moon, Sun } from "react-feather";
+import { GitHub, Moon, Sun } from "react-feather";
 import { useRecoilState } from "recoil";
 import { themeState } from "../../styles/atoms/theme";
-const links = [
-  {
-    link: "/",
-    text: "Home",
-  },
-  {
-    link: "/faq",
-    text: "FAQ",
-  },
-  {
-    link: "/contact",
-    text: "Contact",
-  },
-];
+import Link from "next/link";
 
 export default function Navbar(props) {
   const [theme, setTheme] = useRecoilState(themeState);
@@ -54,30 +41,36 @@ export default function Navbar(props) {
       <Content>
         <LogoSection>
           {/* <Logo src={`/img/navbar/${getLogoPath()}`} /> */}
-          <strong><p>SavageLabs</p></strong>
+          <Link href={"/"}>
+            <Title>
+              <span>
+                <strong>SavageLabs</strong>
+              </span>{" "}
+              <span style={{ color: "#718096" }}>Wiki</span>
+            </Title>
+          </Link>
           {!isDesktop() && (
             <HamburgerButton onClick={() => setToggled(!toggled)} />
           )}
         </LogoSection>
         {(toggled || isDesktop()) && (
           <LinksWrapper>
-            {links
-              .map((entry) => (
-                <LinkWrapper key={entry.link}>
-                  <ActiveLink href={entry.link}>
-                    <LinkText>{entry.text}</LinkText>
-                  </ActiveLink>
-                </LinkWrapper>
-              ))
-              .concat(
-                <LinkWrapper key={"theme"}
-                  onClick={() =>
-                    setTheme(theme === DarkTheme ? LightTheme : DarkTheme)
-                  }
-                >
-                  {theme === DarkTheme ? <Moon /> : <Sun />}
-                </LinkWrapper>
-              )}
+            <LinkWrapper
+              key={"theme"}
+              onClick={() =>
+                setTheme(theme === DarkTheme ? LightTheme : DarkTheme)
+              }
+            >
+              {theme === DarkTheme ? <Moon /> : <Sun />}
+            </LinkWrapper>
+            <LinkWrapper
+              key={"theme"}
+              onClick={() =>
+                setTheme(theme === DarkTheme ? LightTheme : DarkTheme)
+              }
+            >
+              {<GitHub />}
+            </LinkWrapper>
           </LinksWrapper>
         )}
       </Content>
@@ -97,7 +90,6 @@ const Wrapper = styled.div`
   background: ${(props: PropsTheme) => props.theme.background};
   border-bottom: 1px solid ${(props: PropsTheme) => props.theme.borderColor};
 `;
-
 
 const Content = styled.div`
   width: 100%;
@@ -126,6 +118,11 @@ const LogoSection = styled.div`
   }
 `;
 
+const Title = styled.p`
+  font-size: 1.5em;
+  cursor: pointer;
+`;
+
 const HamburgerButton = styled.div`
   width: 25px;
   height: 10px;
@@ -150,7 +147,7 @@ const LinksWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 5px;
 
   @media (min-width: 700px) {
     flex-direction: row;

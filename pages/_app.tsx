@@ -9,7 +9,6 @@ import { RecoilRoot } from "recoil";
 import { useRecoilValue } from "recoil";
 import { themeState } from "../styles/atoms/theme";
 import Footer from "../components/ui/Footer";
-import { MDXProvider } from "@mdx-js/react";
 import components from "../components/mdx/components";
 import "modern-normalize/modern-normalize.css";
 import "./../styles/prism-syntax.css";
@@ -33,10 +32,7 @@ function WrappedApp({ Component, pageProps }) {
       <GlobalStyle />
       <PageContainer>
         <Navbar />
-        <MDXProvider components={components}>
-          <Component {...pageProps} />
-        </MDXProvider>
-        <GeneralFooter />
+        <Component {...pageProps} />
         <Footer />
       </PageContainer>
     </ThemeProvider>

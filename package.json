@@ -11,10 +11,10 @@
   "dependencies": {
     "@mapbox/rehype-prism": "^0.6.0",
     "@mdx-js/loader": "^1.6.22",
-    "@next/mdx": "^10.0.8",
     "babel-plugin-styled-components": "^1.11.1",
     "modern-normalize": "^1.0.0",
-    "next": "9.5.3",
+    "next": "^10.0.8",
+    "next-mdx-remote": "^2.1.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-feather": "^2.0.8",

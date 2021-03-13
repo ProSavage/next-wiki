@@ -6,7 +6,7 @@ import Link from "next/link";
 
 function Footer() {
     return <Wrapper>
-        <Text>next-js-template</Text>
+        <Text>{process.env.NEXT_PUBLIC_REPO_SLUG}-{process.env.NEXT_PUBLIC_REPO_BRANCH}-{process.env.NEXT_PUBLIC_REPO_SHA}</Text>
         <LinkWrapper>
             <Link href={"https://prosavage.net"}>By ProSavage</Link>
         </LinkWrapper>
