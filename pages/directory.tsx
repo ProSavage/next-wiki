@@ -46,13 +46,16 @@ export async function getStaticProps(context) {
 
   const pages = await Promise.all(
     allFiles.map(async (fileName) => {
+      
       const fileContent = await fs.readFile(fileName, "utf-8");
+      let processedFileName = fileName
+      .replace(cwd, "")
+      .replace("/docs", "")
+      .replace("/index.mdx", "")
+      .replace(".mdx", "")
+      if (processedFileName === "") processedFileName = "/"
       return {
-        fileName: fileName
-          .replace(cwd, "")
-          .replace("/docs", "")
-          .replace("/index.mdx", "")
-          .replace(".mdx", ""),
+        fileName: processedFileName,
         content: fileContent,
       };
     })

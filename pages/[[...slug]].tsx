@@ -13,7 +13,8 @@ export default function WikiPage({ content }) {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params.slug as string[];
-  const pagePath = slug.join("/");
+  // If slug is undefined, we are at root, so just default to "".
+  const pagePath = slug ? slug.join("/") : "";
 
   const cwd = process.cwd();
   // Handles finding the actual file to read from.
@@ -27,7 +28,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
   filePath = filePath + ".mdx";
   const content = await fs.readFile(filePath, "utf-8");
-  const mdxSource = await renderToString(content, { components });
+  const rehypePrism = require("@mapbox/rehype-prism")
+  const mdxSource = await renderToString(content, { components, mdxOptions: {rehypePlugins: [rehypePrism]} });
 
   return { props: { content: mdxSource } };
 };

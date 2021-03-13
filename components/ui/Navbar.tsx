@@ -4,10 +4,12 @@ import DarkTheme from "../../styles/theme/DarkTheme";
 import LightTheme from "../../styles/theme/LightTheme";
 import PropsTheme from "../../styles/theme/PropsTheme";
 import ActiveLink from "./../ActiveLink";
-import { GitHub, Moon, Sun } from "react-feather";
+import { Book, GitHub, Moon, Sun } from "react-feather";
 import { useRecoilState } from "recoil";
 import { themeState } from "../../styles/atoms/theme";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import Config from "../../Config";
 
 export default function Navbar(props) {
   const [theme, setTheme] = useRecoilState(themeState);
@@ -35,6 +37,8 @@ export default function Navbar(props) {
     updateWidth();
     return () => window.removeEventListener("resize", updateWidth);
   });
+
+  const router = useRouter();
 
   return (
     <Wrapper>
@@ -64,10 +68,14 @@ export default function Navbar(props) {
               {theme === DarkTheme ? <Moon /> : <Sun />}
             </LinkWrapper>
             <LinkWrapper
-              key={"theme"}
-              onClick={() =>
-                setTheme(theme === DarkTheme ? LightTheme : DarkTheme)
-              }
+              key={"directory"}
+              onClick={() => router.push("/directory")}
+            >
+              {<Book />}
+            </LinkWrapper>
+            <LinkWrapper
+              key={"github"}
+              onClick={() => router.push(Config.githubURL)}
             >
               {<GitHub />}
             </LinkWrapper>
