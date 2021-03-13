@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import DarkTheme from "../../styles/theme/DarkTheme";
 import LightTheme from "../../styles/theme/LightTheme";
 import PropsTheme from "../../styles/theme/PropsTheme";
-import ActiveLink from "./../ActiveLink";
 import { Book, GitHub, Moon, Sun } from "react-feather";
 import { useRecoilState } from "recoil";
 import { themeState } from "../../styles/atoms/theme";
@@ -50,7 +49,7 @@ export default function Navbar(props) {
               <span>
                 <strong>SavageLabs</strong>
               </span>{" "}
-              <span style={{ color: "#718096" }}>Wiki</span>
+              <span style={{ color: theme.secondaryColor }}>Wiki</span>
             </Title>
           </Link>
           {!isDesktop() && (

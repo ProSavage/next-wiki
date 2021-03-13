@@ -41,7 +41,7 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 960px;
+  /* max-width: 960px; */
 `;
 
 const Wrapper = styled.div`

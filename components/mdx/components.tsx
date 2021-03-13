@@ -43,7 +43,7 @@ const HorizontalLine = styled.hr`
   border: none;
 `;
 
-const InlineCode = styled.p`
+const InlineCode = styled.span`
   display: inline;
   padding: 2px 0.25em;
   border-radius: 5px;
